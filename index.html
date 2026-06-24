@@ -118,7 +118,7 @@
   .card-tag{font-family:'DotGothic16',monospace;font-size:11px;letter-spacing:2px;margin-bottom:7px;}
   .card-msg{font-size:17px;font-weight:700;line-height:1.55;}
 
-.machine-layout{display:flex !important;flex-direction:row !important;gap:24px;align-items:flex-start;justify-content:center;width:100%;flex-wrap:nowrap;}
+.machine-layout{display:flex !important;flex-direction:row !important;gap:32px;align-items:flex-start;justify-content:center;width:max-content;max-width:none;margin:0 auto;flex-wrap:nowrap;}
 .machine-column{display:flex;flex-direction:column;align-items:center;flex-shrink:0;}
 .collector-panel{display:block !important;width:260px;flex-shrink:0;background:#fffdf6;border:3px solid #222;border-radius:10px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.12);}
 .collector-title{font-family:'DotGothic16',monospace;text-align:center;font-size:16px;margin-bottom:6px;}
@@ -128,7 +128,7 @@
 .memory-slot{width:40px;height:40px;border-radius:50%;background:#eee;border:2px solid #ccc;}
 .memory-slot.found{background:#2db85a;border-color:#2db85a;}
 .vertical-label{position:absolute;right:8px;top:12px;writing-mode:vertical-rl;font-family:'DotGothic16',monospace;font-size:10px;color:#6b4c4c;}
-@media(max-width:768px){.machine-layout{flex-direction:column;align-items:center}.collector-panel{width:300px}}
+@media(max-width:768px){.machine-layout{flex-direction:row !important;align-items:flex-start}.collector-panel{width:260px}}
 
 </style>
 
