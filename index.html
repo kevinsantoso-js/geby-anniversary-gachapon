@@ -19,16 +19,19 @@
   .brand-text{font-family:'DotGothic16',monospace;font-size:11px;color:#fff;letter-spacing:1px;}
   .price-badge{background:#ffe600;border:2px solid #222;border-radius:4px;font-family:'DotGothic16',monospace;font-size:12px;color:#222;padding:1px 7px;font-weight:700;}
 
-  .header-art{background:#f0f4ff;padding:9px 12px 7px 80px;text-align:center;border-bottom:2px solid #ddd;position:relative;}
-  .sticker-badge{position:absolute;left:10px;top:12px;width:58px;height:58px;border-radius:50%;background:#3f6f56;color:#fff;border:2px solid #fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'DotGothic16',monospace;font-size:10px;line-height:1.15;box-shadow:0 2px 4px rgba(0,0,0,.2);}
-  .header-jp{font-family:'DotGothic16',monospace;font-size:12px;color:#444;letter-spacing:1px;margin-bottom:2px;}
-  .header-title{font-size:13.5px;font-weight:800;color:#1a1a2e;letter-spacing:0.3px;line-height:1.3;}
-  .header-sub-jp{font-family:'DotGothic16',monospace;font-size:11px;color:#d4537e;letter-spacing:1px;margin-top:5px;}
-  .header-sub{font-family:'DotGothic16',monospace;font-size:9px;color:#666;letter-spacing:1.5px;margin-top:1px;}
-  .header-collect-jp{font-family:'DotGothic16',monospace;font-size:10px;color:#1a6fd4;letter-spacing:1px;margin-top:5px;}
-  .header-collect{font-family:'DotGothic16',monospace;font-size:9px;color:#888;letter-spacing:1px;margin-top:1px;}
-  .header-dots{display:flex;justify-content:center;flex-wrap:wrap;gap:4px;margin-top:6px;padding-bottom:4px;}
-  .hdot{width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(0,0,0,0.2);}
+  .header-art.poster-header{
+  padding:0;
+  background:#fff;
+  border-bottom:2px solid #ddd;
+  overflow:hidden;
+}
+
+.poster-header img{
+  width:100%;
+  height:170px;
+  object-fit:cover;
+  display:block;
+}
 
   .globe-wrap{width:100%;border-left:3px solid #222;border-right:3px solid #222;background:#fff;padding:10px 0 0;display:flex;justify-content:center;}
   .globe{width:240px;height:240px;border-radius:50%;border:4px solid #c0c8e0;background:#d6e4f7;overflow:hidden;position:relative;}
@@ -138,18 +141,12 @@
         <span class="brand-text">CAPSULE★TOY</span>
         <span class="price-badge">¥200</span>
       </div>
-      <div class="header-art">
-<div class="vertical-label">思い出<br>コレクション</div>
-        <div class="sticker-badge"><div style="font-size:18px;font-weight:bold">4th</div><div>ANNIV.</div><div>全16種</div></div>
-        <div class="header-jp">ゲビー＆ケビン の 恋物語</div>
-        <div class="header-title">A Capsule Adventure of<br>Geby &amp; Kevin's Love Story</div>
-        <div class="header-sub-jp">★ 4周年記念 スペシャル版 ★</div>
-        <div class="header-sub">4TH ANNIVERSARY SPECIAL EDITION</div>
-        <div class="header-collect-jp">全16種類を集めよう！</div>
-        <div class="header-collect">COLLECT ALL 16 MEMORIES</div>
-        <div class="header-dots" id="headerDots"></div>
-      </div>
-    </div>
+      <div class="header-art poster-header">
+  <img
+    src="images/gacha-poster.png"
+    alt="Kevin & Geby Anniversary Gachapon"
+  >
+</div>
 
     <div class="globe-wrap">
       <div class="globe" id="globe">
