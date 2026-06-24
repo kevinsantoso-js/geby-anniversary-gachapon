@@ -110,15 +110,28 @@
   .card-header{padding:7px 16px;display:flex;justify-content:space-between;align-items:center;}
   .ch-label{font-family:'DotGothic16',monospace;font-size:13px;color:#fff;letter-spacing:2px;}
   .ch-num{font-family:'DotGothic16',monospace;font-size:13px;color:rgba(255,255,255,0.65);}
-  .card-img-area{width:100%;height:220px;display:flex;align-items:center;justify-content:center;font-size:80px;position:relative;overflow:hidden;}
+  .card-img-area{width:100%;min-height:420px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#f5f5f5;}
   .card-body{padding:16px 20px 20px;}
   .card-tag{font-family:'DotGothic16',monospace;font-size:11px;letter-spacing:2px;margin-bottom:7px;}
   .card-msg{font-size:17px;font-weight:700;line-height:1.55;}
+
+.machine-layout{display:flex;gap:24px;align-items:flex-start;}
+.collector-panel{width:190px;background:#fff;border:3px solid #222;border-radius:10px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.12);}
+.collector-title{font-family:'DotGothic16',monospace;text-align:center;font-size:14px;margin-bottom:4px;}
+.collector-sub{font-family:'DotGothic16',monospace;text-align:center;font-size:9px;color:#888;margin-bottom:8px;}
+.collection-counter{font-family:'DotGothic16',monospace;text-align:center;font-size:11px;color:#d4af37;margin-bottom:10px;}
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.memory-slot{width:34px;height:34px;border-radius:50%;background:#eee;border:2px solid #ccc;}
+.memory-slot.found{background:#2db85a;border-color:#2db85a;}
+.vertical-label{position:absolute;right:8px;top:12px;writing-mode:vertical-rl;font-family:'DotGothic16',monospace;font-size:10px;color:#6b4c4c;}
+@media(max-width:768px){.machine-layout{flex-direction:column;align-items:center}.collector-panel{width:300px}}
+
 </style>
 
 
 
 <div class="gw" id="app">
+  <div class="machine-layout">
   <div class="machine">
     <div class="header-panel">
       <div class="header-banner">
@@ -126,13 +139,14 @@
         <span class="price-badge">¥200</span>
       </div>
       <div class="header-art">
-        <div class="sticker-badge"><div>4 YEARS</div><div>全16種</div></div>
+<div class="vertical-label">思い出<br>コレクション</div>
+        <div class="sticker-badge"><div style="font-size:18px;font-weight:bold">4th</div><div>ANNIV.</div><div>全16種</div></div>
         <div class="header-jp">ゲビー＆ケビン の 恋物語</div>
         <div class="header-title">A Capsule Adventure of<br>Geby &amp; Kevin's Love Story</div>
         <div class="header-sub-jp">★ 4周年記念 スペシャル版 ★</div>
         <div class="header-sub">4TH ANNIVERSARY SPECIAL EDITION</div>
         <div class="header-collect-jp">全16種類を集めよう！</div>
-        <div class="header-collect">COLLECT ALL 16 MEMORIES</div><div id="collectionCounter" style="font-family:DotGothic16,monospace;font-size:10px;color:#d4af37;margin-top:4px;">0 / 16 Memories Found</div>
+        <div class="header-collect">COLLECT ALL 16 MEMORIES</div>
         <div class="header-dots" id="headerDots"></div>
       </div>
     </div>
@@ -177,6 +191,15 @@
       <div class="chute-outer" id="chuteEl"><div class="chute-inner"></div></div>
       <div class="warning-strip" id="warnStrip"></div>
     </div>
+  </div>
+
+  <div class="collector-panel">
+    <div class="collector-title">COLLECTION</div>
+    <div class="collector-sub">Memories Found</div>
+    <div id="collectionCounter" class="collection-counter">0 / 16</div>
+    <div class="memory-grid" id="memoryGrid"></div>
+  </div>
+
   </div>
 
   <div class="floor-area" id="floorArea">
@@ -303,6 +326,18 @@ const items=[
 const TOTAL_MEMORIES = 16;
 let collected = JSON.parse(localStorage.getItem('gachaCollection') || '[]');
 
+
+function buildMemoryGrid(){
+ const grid=document.getElementById('memoryGrid');
+ if(!grid) return;
+ grid.innerHTML='';
+ for(let i=0;i<16;i++){
+  const d=document.createElement('div');
+  d.className='memory-slot'+(collected.includes(i)?' found':'');
+  grid.appendChild(d);
+ }
+}
+
 function updateCollectionCounter(){
   const el=document.getElementById('collectionCounter');
   if(el) el.textContent=`${collected.length} / 16 Memories Found`;
@@ -403,7 +438,7 @@ function dropCapsuleAnimation(color, onLand){
   const fa=document.getElementById('floorArea');
   const fr=fa.getBoundingClientRect();
   const startX=cr.left+cr.width/2-fr.left-32;
-  const landY=Math.min(fr.height-140,110);
+  const landY=40;
   const landX=fr.width/2-32;
 
   const el=document.createElement('div');
@@ -446,7 +481,7 @@ function showRevealModal(idx){
   if(idx < 16 && !collected.includes(idx)){
     collected.push(idx);
     localStorage.setItem('gachaCollection', JSON.stringify(collected));
-    updateCollectionCounter();
+    updateCollectionCounter();buildMemoryGrid();
   }
   const item=items[idx];
   const backdrop=document.getElementById('revealBackdrop');
@@ -460,7 +495,7 @@ function showRevealModal(idx){
       <span class="ch-num">#${String(idx+1).padStart(3,'0')}</span>
     </div>
     <div class="card-img-area" id="cardImgArea" style="background:${item.cardBg||'#f5f5f8'};">
-      ${item.image ? `<img src="${item.image}" style="width:100%;height:100%;object-fit:contain;display:block;background:#f5f5f5;">` : `<div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:60px;">✨</div>`}
+      ${item.image ? `<img src="${item.image}" style="max-width:100%;max-height:420px;width:auto;height:auto;display:block;margin:auto;">` : `<div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:60px;">✨</div>`}
     </div>
     <div class="card-body">
       <div class="card-tag" style="color:${item.tagColor||'#1a6fd4'}">★ for you ★</div>
