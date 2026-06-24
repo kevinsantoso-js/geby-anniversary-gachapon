@@ -163,6 +163,28 @@ cursor:pointer;
 color:#7a5a00;
 }
 .special-letter-btn.show{display:block;}
+
+.letter-close{
+  position:absolute;
+  bottom:24px;
+  right:24px;
+  padding:10px 18px;
+  border:none;
+  border-radius:999px;
+  background:#caa03a;
+  color:white;
+  font-family:'DotGothic16', monospace;
+  font-size:12px;
+  letter-spacing:1px;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+  transition:all .2s ease;
+}
+.letter-close:hover{
+  transform:translateY(-2px);
+  background:#b8902f;
+}
+
 </style>
 
 
@@ -254,7 +276,7 @@ color:#7a5a00;
 <!-- WRITE YOUR MESSAGE HERE -->
 </div>
 <p>Love,<br>Kevin ❤️</p>
-<button onclick="document.getElementById('letterModal').style.display='none'">Close</button>
+<button class="letter-close" onclick="document.getElementById('letterModal').style.display='none'">Close ✕</button>
 </div></div>
 <script>
 const CAP_COLORS=['#e8001a','#1a6fd4','#f5a200','#2db85a','#9b30d9','#ff6ec7','#00b4cc','#ff4500','#8bc34a','#e040fb'];
