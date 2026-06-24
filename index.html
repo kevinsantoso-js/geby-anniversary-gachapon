@@ -149,6 +149,20 @@ body.secret-unlocked{background:radial-gradient(circle,#fff9d8 0%,#ffe88a 45%,#f
 .intro-card img{width:100%;display:block;border-radius:12px;}
 .intro-btn{margin-top:14px;padding:12px 22px;border:none;border-radius:999px;background:#ff7aa8;color:white;font-weight:700;cursor:pointer;}
 .secret-message-card{background:linear-gradient(135deg,#fff7c2,#ffe082);padding:24px;border-radius:16px;text-align:center;}
+
+.special-letter-btn{
+display:none;
+margin-top:14px;
+padding:10px 16px;
+border:2px solid #d4af37;
+background:#fff8dc;
+border-radius:999px;
+font-family:'DotGothic16',monospace;
+font-size:11px;
+cursor:pointer;
+color:#7a5a00;
+}
+.special-letter-btn.show{display:block;}
 </style>
 
 
@@ -231,6 +245,17 @@ body.secret-unlocked{background:radial-gradient(circle,#fff9d8 0%,#ffe88a 45%,#f
   <div class="reveal-card" id="revealCard"></div>
 </div>
 
+
+<div id="letterModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:99998;align-items:center;justify-content:center;">
+<div style="background:#fff8dc;width:min(700px,90vw);padding:32px;border-radius:16px;border:3px solid #d4af37;">
+<h2 style="font-family:'DotGothic16',monospace;margin-bottom:20px;">LIMITED EDITION</h2>
+<p>Dear Geby,</p>
+<div style="min-height:260px;margin:20px 0;">
+<!-- WRITE YOUR MESSAGE HERE -->
+</div>
+<p>Love,<br>Kevin ❤️</p>
+<button onclick="document.getElementById('letterModal').style.display='none'">Close</button>
+</div></div>
 <script>
 const CAP_COLORS=['#e8001a','#1a6fd4','#f5a200','#2db85a','#9b30d9','#ff6ec7','#00b4cc','#ff4500','#8bc34a','#e040fb'];
 
@@ -362,7 +387,7 @@ function updateCollectionCounter(){
   if(el) el.textContent=`${collected.length} / 16 Memories Found`;
 
   if(collected.length>=16 && el){
-    el.textContent='✨ ALL MEMORIES FOUND - SPECIAL CAPSULE UNLOCKED ✨';
+    el.textContent='✨ ALL MEMORIES FOUND';
   }
 }
 
@@ -667,4 +692,20 @@ window.addEventListener('mouseup',pointerUp);
 window.addEventListener('touchend',pointerUp);
 
 buildCapSvg();buildHeaderDots();buildWarnStrip();updateCollectionCounter();
+
+document.addEventListener('DOMContentLoaded',()=>{
+ const btn=document.getElementById('specialLetterBtn');
+ const modal=document.getElementById('letterModal');
+ if(btn){
+   btn.onclick=()=>{ modal.style.display='flex'; };
+   const checkBtn=()=>{
+      if(collected && collected.length>=16){ btn.classList.add('show'); }
+   };
+   checkBtn();
+   const oldBuild=window.buildMemoryGrid;
+   if(oldBuild){
+      window.buildMemoryGrid=function(){ oldBuild(); checkBtn(); }
+   }
+ }
+});
 </script>
