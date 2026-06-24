@@ -387,7 +387,16 @@ function updateCollectionCounter(){
   if(el) el.textContent=`${collected.length} / 16 Memories Found`;
 
   if(collected.length>=16 && el){
-    el.textContent='✨ ALL MEMORIES FOUND';
+    el.innerHTML='✨ ALL MEMORIES FOUND ✨<br><br><button id="specialLetterBtn" style="padding:10px 16px;border:none;border-radius:999px;background:#d4af37;color:white;cursor:pointer;">💌 Open Special Letter</button>';
+    setTimeout(()=>{
+      const btn=document.getElementById('specialLetterBtn');
+      if(btn){
+        btn.onclick=()=>{
+          const modal=document.getElementById('letterModal');
+          if(modal){ modal.style.display='flex'; }
+        };
+      }
+    },0);
   }
 }
 
