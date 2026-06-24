@@ -63,7 +63,7 @@
   .warning-strip{width:100%;display:flex;gap:3px;}
   .warn-seg{height:6px;flex:1;border-radius:1px;}
 
-  .floor-area{width:300px;min-height:220px;position:relative;margin-top:0;}
+  .floor-area{width:360px;min-height:140px;position:relative;margin-top:12px;margin-left:auto;margin-right:auto;}
   .floor-line{position:absolute;bottom:0;left:0;right:0;height:3px;background:#bbb;border-radius:2px;}
   .idle-msg{font-family:'DotGothic16',monospace;font-size:11px;color:#888;letter-spacing:3px;text-align:center;animation:blink 1.4s step-end infinite;padding-top:90px;}
   @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
@@ -89,7 +89,7 @@
   .reveal-backdrop.show{ background:rgba(0,0,0,0.65); pointer-events:all; }
 
   .reveal-card{
-    width:min(86vw, 340px);
+    width:min(95vw, 620px);
     border:3px solid #222; border-radius:14px;
     overflow:hidden; background:#fff;
     transform:scale(0.3) translateY(40px);
@@ -113,7 +113,7 @@
   .card-header{padding:7px 16px;display:flex;justify-content:space-between;align-items:center;}
   .ch-label{font-family:'DotGothic16',monospace;font-size:13px;color:#fff;letter-spacing:2px;}
   .ch-num{font-family:'DotGothic16',monospace;font-size:13px;color:rgba(255,255,255,0.65);}
-  .card-img-area{width:100%;min-height:420px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#f5f5f5;}
+  .card-img-area{width:100%;min-height:520px;display:flex;align-items:center;justify-content:center;position:relative;overflow:visible;background:#f5f5f5;padding:20px;}
   .card-body{padding:16px 20px 20px;}
   .card-tag{font-family:'DotGothic16',monospace;font-size:11px;letter-spacing:2px;margin-bottom:7px;}
   .card-msg{font-size:17px;font-weight:700;line-height:1.55;}
@@ -127,7 +127,7 @@
 .memory-slot{width:40px;height:40px;border-radius:50%;background:#eee;border:2px solid #ccc;}
 .memory-slot.found{background:#2db85a;border-color:#2db85a;}
 .vertical-label{position:absolute;right:8px;top:12px;writing-mode:vertical-rl;font-family:'DotGothic16',monospace;font-size:10px;color:#6b4c4c;}
-@media(max-width:768px){.machine-layout{flex-direction:column;align-items:center}.collector-panel{width:300px}}
+@media(max-width:768px){.machine-layout{flex-direction:row;align-items:flex-start;justify-content:center}.collector-panel{width:220px}}
 
 </style>
 
